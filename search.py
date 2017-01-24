@@ -80,24 +80,22 @@ def depthFirstSearch(problem):
   print "Is the start a goal?", problem.isGoal(problem.startingState())
   print "Start's successors:", problem.successorStates(problem.startingState())
   """
-  from game import Directions
-  # LIFO queue --> import stack
-  from util import Stack
-  s = Directions.SOUTH
-  n = Directions.NORTH
-  w = Directions.WEST
-  e = Directions.EAST
 
   start = problem.StartingState()
 
-  fringe = Stack()
-  visited = []
-  actions = []
-  fringe.push(start, visited, actions)
+  # Lifo queue
+  stack = util.Stack()
 
+  # Add only visited to start initially
+  visited = [start]
+  path = []
 
-  while not fringe.isEmpty():
+  # Push start onto stack
+  stack.push(start)
 
+  # Main loop
+  while not stack.isEmpty():
+    moves = problem.successorStates()
     pass
   util.raiseNotDefined()
 
