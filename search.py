@@ -85,17 +85,15 @@ def depthFirstSearch(problem):
 
   # Lifo queue
   stack = util.Stack()
-
-  # Add only visited to start initially
   visited = [start]
   path = []
-
-  # Push start onto stack
+  succ = problem.successorStates(start)
   stack.push(start)
 
   # Main loop
   while not stack.isEmpty():
-    moves = problem.successorStates()
+    curr_node = stack.pop()
+
     pass
   util.raiseNotDefined()
 
