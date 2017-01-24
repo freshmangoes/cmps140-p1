@@ -90,17 +90,15 @@ def depthFirstSearch(problem):
 
   start = problem.StartingState()
 
-  stack = Stack()
-  stack.push(start)
-
+  fringe = Stack()
   visited = []
-
-  while not stack.isEmpty():
-
-
+  actions = []
+  fringe.push(start, visited, actions)
 
 
+  while not fringe.isEmpty():
 
+    pass
   util.raiseNotDefined()
 
 
