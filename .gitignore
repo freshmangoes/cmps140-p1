@@ -91,6 +91,7 @@ crashlytics-build.properties
 fabric.properties
 
 # Python files
-.pyc
+*.pyc
 
 .zip
+*.zip
