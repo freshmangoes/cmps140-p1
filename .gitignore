@@ -92,3 +92,5 @@ fabric.properties
 
 # Python files
 .pyc
+
+.zip

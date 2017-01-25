@@ -81,11 +81,15 @@ def depthFirstSearch(problem):
   print "Start's successors:", problem.successorStates(problem.startingState())
   """
 
-  stack = util.Stack()  # Lifo Queue
-  start = problem.startingState()   # root node
-  visited = set()   # set of unique visited coords
-  print(start)
+  stack = util.Stack()  #Lifo Queue
+  start = problem.startingState()   #root node
+  visited = set()   #set of unique visited coords
+  path = []
+  print("Start: " + str(start))
   stack.push(start)
+
+  if problem.isGoal(start):
+    return start
 
   # Main loop --> nodes that haven't been visited
   while not stack.isEmpty():
@@ -94,17 +98,20 @@ def depthFirstSearch(problem):
     # print("Adjacent: " + str(adjacent)) # in form of coord, dir, cost
     # print("Adjacent coords:" + str(adjacent[1][0])) #[i][0] is coordinate
     # print("Visited coords: " + str(visited))
+    # print(util.matrixAsList(adjacent))
 
-    if problem.isGoal(curr_node):
-        print("Found solution")
-        return None
     if curr_node not in visited:
         visited.add(curr_node)  # add curr_node to visited
+        path.append(curr_node)
+
+        if problem.isGoal(curr_node):
+            print("Found solution")
+            # path.append(curr_node)
+            return path
 
         for adj in adjacent:
             print("Coords adj to curr: "+ str(adj))
             stack.push(adj[0])
-            # print(stack)
     pass
   util.raiseNotDefined()
 
@@ -114,22 +121,29 @@ def breadthFirstSearch(problem):
   Q = util.Queue() #Fifo queue
   start = problem.startingState()
   visited = set()
-  print(start)
+  path = []
+  print("Start: " + str(start))
   Q.push(start)
+
+  if problem.isGoal(start):
+    return start
 
   while not Q.isEmpty():
     curr_node = Q.pop()
     adjacent = problem.successorStates(curr_node)
 
-    if problem.isGoal(curr_node):
-      print("Found solution")
-      return
+
     if curr_node not in visited:
       visited.add(curr_node)
+      path.append(curr_node)
 
       for adj in adjacent:
         print("Coords adj to curr: "+ str(adj))
         Q.push(adj[0])
+
+    if problem.isGoal(curr_node):
+      print("Found solution")
+      return path
   pass
   util.raiseNotDefined()
 
