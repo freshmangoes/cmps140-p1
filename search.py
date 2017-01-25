@@ -96,6 +96,7 @@ def depthFirstSearch(problem):
     # print("Visited coords: " + str(visited))
 
     if problem.isGoal(curr_node):
+        print("Found solution")
         return None
     if curr_node not in visited:
         visited.add(curr_node)  # add curr_node to visited
