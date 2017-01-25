@@ -81,19 +81,29 @@ def depthFirstSearch(problem):
   print "Start's successors:", problem.successorStates(problem.startingState())
   """
 
-  start = problem.StartingState()
-
-  # Lifo queue
-  stack = util.Stack()
-  visited = [start]
-  path = []
-  succ = problem.successorStates(start)
+  stack = util.Stack()  # Lifo Queue
+  start = problem.startingState()   # root node
+  visited = set()   # set of unique visited coords
+  print(start)
   stack.push(start)
 
-  # Main loop
+  # Main loop --> nodes that haven't been visited
   while not stack.isEmpty():
-    curr_node = stack.pop()
+    curr_node = stack.pop() # pop queue
+    adjacent = problem.successorStates(curr_node)    # get successor states of curr_node
+    # print("Adjacent: " + str(adjacent)) # in form of coord, dir, cost
+    # print("Adjacent coords:" + str(adjacent[1][0])) #[i][0] is coordinate
+    # print("Visited coords: " + str(visited))
 
+    if problem.isGoal(curr_node):
+        return None
+    if curr_node not in visited:
+        visited.add(curr_node)  # add curr_node to visited
+
+        for adj in adjacent:
+            print("Coords adj to curr: "+ str(adj))
+            stack.push(adj[0])
+            # print(stack)
     pass
   util.raiseNotDefined()
 
