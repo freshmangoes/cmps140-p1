@@ -99,15 +99,15 @@ def depthFirstSearch(problem):
     # print("Adjacent coords:" + str(adjacent[1][0])) #[i][0] is coordinate
     # print("Visited coords: " + str(visited))
     # print(util.matrixAsList(adjacent))
+    if problem.isGoal(curr_node):
+        print("Found solution")
+        # path.append(curr_node)
+        return path
 
     if curr_node not in visited:
         visited.add(curr_node)  # add curr_node to visited
         path.append(curr_node)
 
-        if problem.isGoal(curr_node):
-            print("Found solution")
-            # path.append(curr_node)
-            return path
 
         for adj in adjacent:
             print("Coords adj to curr: "+ str(adj))
@@ -132,6 +132,9 @@ def breadthFirstSearch(problem):
     curr_node = Q.pop()
     adjacent = problem.successorStates(curr_node)
 
+    if problem.isGoal(curr_node):
+        print("Found solution")
+        return path
 
     if curr_node not in visited:
       visited.add(curr_node)
@@ -141,9 +144,6 @@ def breadthFirstSearch(problem):
         print("Coords adj to curr: "+ str(adj))
         Q.push(adj[0])
 
-    if problem.isGoal(curr_node):
-      print("Found solution")
-      return path
   pass
   util.raiseNotDefined()
 
