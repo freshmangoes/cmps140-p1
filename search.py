@@ -111,6 +111,26 @@ def depthFirstSearch(problem):
 
 def breadthFirstSearch(problem):
   "Search the shallowest nodes in the search tree first. [p 81]"
+  Q = util.Queue() #Fifo queue
+  start = problem.startingState()
+  visited = set()
+  print(start)
+  Q.push(start)
+
+  while not Q.isEmpty():
+    curr_node = Q.pop()
+    adjacent = problem.successorStates(curr_node)
+
+    if problem.isGoal(curr_node):
+      print("Found solution")
+      return
+    if curr_node not in visited:
+      visited.add(curr_node)
+
+      for adj in adjacent:
+        print("Coords adj to curr: "+ str(adj))
+        Q.push(adj[0])
+  pass
   util.raiseNotDefined()
 
 def uniformCostSearch(problem):
