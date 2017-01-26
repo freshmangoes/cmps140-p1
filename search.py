@@ -86,8 +86,8 @@ def depthFirstSearch(problem):
   visited = set()   #set of unique visited coords
   path = []
   print("Start: " + str(start))
-  stack.push(start)
-
+  stack.push((start, 'None'))
+  # ALSO NEED TO KEEP TRACK OF EACH PARENT OF THE POPPED NODE SO WE CAN TRACE BACK THE PATH!!!!!!
   if problem.isGoal(start):
     return start
 
@@ -95,13 +95,13 @@ def depthFirstSearch(problem):
   while not stack.isEmpty():
     curr_node = stack.pop() # pop queue
     adjacent = problem.successorStates(curr_node)    # get successor states of curr_node
+    # print("Current node: " + str(curr_node))
     # print("Adjacent: " + str(adjacent)) # in form of coord, dir, cost
     # print("Adjacent coords:" + str(adjacent[1][0])) #[i][0] is coordinate
     # print("Visited coords: " + str(visited))
-    # print(util.matrixAsList(adjacent))
     if problem.isGoal(curr_node):
         print("Found solution")
-        # path.append(curr_node)
+        path.append(curr_node)
         return path
 
     if curr_node not in visited:
@@ -110,14 +110,15 @@ def depthFirstSearch(problem):
 
 
         for adj in adjacent:
-            print("Coords adj to curr: "+ str(adj))
+            # print("Nodes adj to curr: "+ str(adj))
+            # print(adj[0])
             stack.push(adj[0])
     pass
   util.raiseNotDefined()
 
 
 def breadthFirstSearch(problem):
-  "Search the shallowest nodes in the search tree first. [p 81]"
+  # "Search the shallowest nodes in the search tree first. [p 81]"
   Q = util.Queue() #Fifo queue
   start = problem.startingState()
   visited = set()
@@ -134,6 +135,7 @@ def breadthFirstSearch(problem):
 
     if problem.isGoal(curr_node):
         print("Found solution")
+        path.append(curr_node)
         return path
 
     if curr_node not in visited:
